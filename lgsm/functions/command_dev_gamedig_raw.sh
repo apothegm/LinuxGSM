@@ -14,4 +14,13 @@ do
 	fi
 done
 
+local engine_query_array=( avalanche2.0 )
+for engine_query in "${engine_query_array[@]}"
+do
+	if [ "${engine_query}" == "${engine}" ]; then
+		gamedigengine="jc2mp"
+	fi
+done
+
+
 gamedig --type ${gamedigengine} --host ${ip} --port ${port}
