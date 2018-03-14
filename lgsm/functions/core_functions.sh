@@ -269,6 +269,11 @@ functionfile="${FUNCNAME}"
 fn_fetch_function
 }
 
+command_dev_gamedig_raw.sh(){
+functionfile="${FUNCNAME}"
+fn_fetch_function
+}
+
 # Fix
 
 fix.sh(){
@@ -359,6 +364,11 @@ fn_fetch_function
 }
 
 info_distro.sh(){
+functionfile="${FUNCNAME}"
+fn_fetch_function
+}
+
+info_gamedig.sh(){
 functionfile="${FUNCNAME}"
 fn_fetch_function
 }

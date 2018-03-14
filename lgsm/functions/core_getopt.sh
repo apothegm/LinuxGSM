@@ -20,6 +20,7 @@ cmd_backup=( "b;backup" "command_backup.sh" "Create backup archives of the serve
 cmd_update_linuxgsm=( "ul;update-lgsm;uf;update-functions" "command_update_linuxgsm.sh" "Check and apply any LinuxGSM updates." )
 cmd_test_alert=( "ta;test-alert" "command_test_alert.sh" "Send a test alert." )
 cmd_monitor=( "m;monitor" "command_monitor.sh" "Check server status and restart if crashed." )
+cmd_gamedig=( "gd;gamedig" "info_gamedig.sh" "Returns query data from the server." )
 # Console servers only
 cmd_console=( "c;console" "command_console.sh" "Access server console." )
 cmd_debug=( "d;debug" "command_debug.sh" "Start server directly in your terminal." )
@@ -47,10 +48,11 @@ cmd_dev_debug=( "dev;developer" "command_dev_debug.sh" "Enable developer Mode." 
 cmd_dev_detect_deps=( "dd;detect-deps" "command_dev_detect_deps.sh" "Detect required dependencies." )
 cmd_dev_detect_glibc=( "dg;detect-glibc" "command_dev_detect_glibc.sh" "Detect required glibc." )
 cmd_dev_detect_ldd=( "dl;detect-ldd" "command_dev_detect_ldd.sh" "Detect required dynamic dependencies." )
+cmd_dev_gamedig_raw=( "gdr;gamedig-raw" "command_dev_gamesif_raw.sh" "The raw output of gamedig." )
 
 ### Set specific opt here ###
 
-currentopt=( "${cmd_start[@]}" "${cmd_stop[@]}" "${cmd_restart[@]}" "${cmd_monitor[@]}" "${cmd_test_alert[@]}" "${cmd_details[@]}" "${cmd_postdetails[@]}" )
+currentopt=( "${cmd_start[@]}" "${cmd_stop[@]}" "${cmd_restart[@]}" "${cmd_monitor[@]}" "${cmd_test_alert[@]}" "${cmd_gamedig[@]}" "${cmd_details[@]}" "${cmd_postdetails[@]}" )
 
 # Update LGSM
 currentopt+=( "${cmd_update_linuxgsm[@]}" )
@@ -130,7 +132,7 @@ currentopt+=( "${cmd_install[@]}" "${cmd_auto_install[@]}" )
 ## Developer commands
 currentopt+=( "${cmd_dev_debug[@]}" )
 if [ -f ".dev-debug" ]; then
-	currentopt+=(  "${cmd_dev_detect_deps[@]}" "${cmd_dev_detect_glibc[@]}" "${cmd_dev_detect_ldd[@]}" )
+	currentopt+=(  "${cmd_dev_detect_deps[@]}" "${cmd_dev_detect_glibc[@]}" "${cmd_dev_detect_ldd[@]}" "${cmd_dev_gamedig_raw[@]}" )
 fi
 
 ### Build list of available commands
