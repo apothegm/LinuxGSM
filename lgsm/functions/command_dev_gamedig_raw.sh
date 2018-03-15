@@ -4,6 +4,10 @@
 # Website: https://gameservermanagers.com
 # Description: Raw gamedig output of the server.
 
+echo "================================="
+echo "Gamedig Raw Output"
+echo "================================="
+
 if [ ! "$(command -v gamedig 2>/dev/null)" ]; then
 	fn_print_fail_nl "gamedig not installed"
 	core_exit.sh
