@@ -65,4 +65,5 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 	gdmap=$(echo "${gamedigraw}" | jq -e '.map')
 
 	# numbots
-	gdbots=$(echo "${gamedigraw}" | |jq -e '.raw.numbots')
+	gdbots=$(echo "${gamedigraw}" | jq -e '.raw.numbots')
+fi
