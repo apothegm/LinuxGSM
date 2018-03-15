@@ -66,4 +66,3 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 
 	# numbots
 	gdbots=$(echo "${gamedigraw}" | |jq -e '.raw.numbots')
-#
