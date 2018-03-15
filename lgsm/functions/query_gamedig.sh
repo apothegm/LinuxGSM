@@ -52,5 +52,17 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 		fi
 	done
 
-	gamedig --type "${gamedigengine}" --host "${ip}" --port "${port}"|jq
-fi
+	# raw output
+	gamedigraw=$(gamedig --type "${gamedigengine}" --host "${ip}" --port "${port}")
+
+	# formatted jq output
+	echo "${gamedigraw}" | jq
+
+	# numplayers
+	gdplayers=$(echo "${gamedigraw}" | jq -e '.raw.numplayers')
+
+	# current map
+	gdmap=$(echo "${gamedigraw}" | jq -e '.map')
+
+	# numbots
+	gdbots=$(echo "${gamedigraw}" | |jq -e '.raw.numbots')
