@@ -14,4 +14,4 @@ if [ ! "$(command -v gamedig 2>/dev/null)" ]; then
 fi
 
 query_gamedig.sh
-echo "${gdjq}"
+echo "${gamedigraw}" | jq
