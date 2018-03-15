@@ -436,9 +436,14 @@ functionfile="${FUNCNAME}"
 fn_fetch_function
 }
 
-# Monitor
+# Query
 
 query_gsquery.sh(){
+functionfile="${FUNCNAME}"
+fn_fetch_function
+}
+
+query_gamedig.sh(){
 functionfile="${FUNCNAME}"
 fn_fetch_function
 }
