@@ -438,7 +438,7 @@ fn_fetch_function
 
 # Monitor
 
-monitor_gsquery.sh(){
+query_gsquery.sh(){
 functionfile="${FUNCNAME}"
 fn_fetch_function
 }

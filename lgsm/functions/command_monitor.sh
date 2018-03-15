@@ -4,7 +4,7 @@
 # Contributor: UltimateByte
 # Website: https://linuxgsm.com
 # Description: Monitors server by checking for running processes.
-# then passes to monitor_gsquery.sh.
+# then passes to query_gsquery.sh.
 
 local commandname="MONITOR"
 local commandaction="Monitor"
@@ -85,10 +85,10 @@ fn_monitor_tmux(){
 			if [ "${allowed_engine}" == "starbound" ]; then
 				info_config.sh
 				if [ "${queryenabled}" == "true" ]; then
-					monitor_gsquery.sh
+					query_gsquery.sh
 				fi
 			elif [ "${allowed_engine}" == "${engine}" ]; then
-				monitor_gsquery.sh
+				query_gsquery.sh
 			fi
 		done
 	else
