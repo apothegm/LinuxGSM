@@ -184,11 +184,25 @@ fn_info_message_gameserver(){
 		fi
 
 		# Players
-		if [ -n "${gdplayers}" ]; then
-			echo -e "${blue}Players:\t${default}${gdplayers}/${maxplayers}"
-		else
-			# Maxplayers
+
+		if [ -n "${gamedigerror}" ]; then
 			if [ -n "${maxplayers}" ]; then
+				echo -e "${blue}Maxplayers:\t${default}${maxplayers}"
+			fi
+		else
+			if [ -n "${gdplayers}" ]&&[ -n "${gdmaxplayers}" ]; then
+				echo -e "${blue}Players:\t${default}${gdplayers}/${gdmaxplayers}"
+
+			elif [ -n "${gdplayers}" ]&&[ -n "${maxplayers}" ]; then
+				echo -e "${blue}Players:\t${default}${gdplayers}/${maxplayers}"
+
+			elif [ -z "${gdplayers}" ]&&[ -n "${gdmaxplayers}" ]; then
+				echo -e "${blue}Maxplayers:\t${default}${gdmaxplayers}"
+
+			elif [ -n "${gdplayers}" ]&&[ -z "${gdmaxplayers}" ]; then
+				echo -e "${blue}Players:\t${default}${gdplayers}|∞"
+
+			elif [ -z "${gdplayers}" ]&&[ -z "${gdmaxplayers}" ]&&[ -n "${maxplayers}" ]; then
 				echo -e "${blue}Maxplayers:\t${default}${maxplayers}"
 			fi
 		fi

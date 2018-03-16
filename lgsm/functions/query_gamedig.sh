@@ -60,6 +60,8 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 		fi
 	done
 
+	# checks if query is working
+	gamedigerror=$(gamedig --type "${gamedigengine}" --host "${ip}" --port "${port}") | jq '.error|length')
 	# raw output
 	gamedigraw=$(gamedig --type "${gamedigengine}" --host "${ip}" --port "${port}")
 
@@ -73,6 +75,12 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 	gdplayers=$(echo "${gamedigraw}" | jq -re '.players|length')
 	if [ "${gdplayers}" == "null" ]; then
 		gdplayers=
+	fi
+
+	# maxplayers
+	gdmaxplayers=$(echo "${gamedigraw}" | jq -re '.maxplayers|length')
+	if [ "${gdmaxplayers}" == "null" ]; then
+		maxplayers=
 	fi
 
 	# current map
