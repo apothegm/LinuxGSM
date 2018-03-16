@@ -59,11 +59,11 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 	gdjq=$(echo "${gamedigraw}" | jq)
 
 	# numplayers
-	gdplayers=$(echo "${gamedigraw}" | jq -e '.raw.numplayers')
+	gdplayers=$(echo "${gamedigraw}" | jq -re '.raw.numplayers')
 
 	# current map
-	gdmap=$(echo "${gamedigraw}" | jq -e '.map')
+	gdmap=$(echo "${gamedigraw}" | jq -re '.map')
 
 	# numbots
-	gdbots=$(echo "${gamedigraw}" | jq -e '.raw.numbots')
+	gdbots=$(echo "${gamedigraw}" | jq -re '.raw.numbots')
 fi
