@@ -61,7 +61,7 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 	done
 
 	# checks if query is working
-	gamedigerror=$(gamedig --type "${gamedigengine}" --host "${ip}" --port "${port}") | jq '.error|length')
+	gamedigerror=$(gamedig --type "${gamedigengine}" --host "${ip}" --port "${port}" | jq '.error|length')
 	# raw output
 	gamedigraw=$(gamedig --type "${gamedigengine}" --host "${ip}" --port "${port}")
 
