@@ -138,7 +138,7 @@ fi
 if [ -z "${extip}" ];then
 	extip=$(${curlpath} -m 3 ifconfig.co > "${tmpdir}/extip.txt")
 	if [ $? -ne 0 ]; then
-		if [ -f "${tmpdir}/extip.txt"];then
+		if [ -f "${tmpdir}/extip.txt" ];then
 			echo "${tmpdir}/extip.txt"
 		else
 			echo "x.x.x.x"
