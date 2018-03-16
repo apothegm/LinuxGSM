@@ -52,6 +52,14 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 		fi
 	done
 
+	local shortname_query_array=( ts3 )
+	for shortname_query in "${shortname_query_array[@]}"
+	do
+		if [ "${engine_query}" == "${shortname}" ]; then
+			gamedigengine="teamspeak3"
+		fi
+	done
+
 	# raw output
 	gamedigraw=$(gamedig --type "${gamedigengine}" --host "${ip}" --port "${port}")
 
