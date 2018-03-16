@@ -142,5 +142,6 @@ if [ -z "${extip}" ];then
 			echo "${tmpdir}/extip.txt"
 		else
 			echo "x.x.x.x"
+		fi
 	fi
 fi
