@@ -24,7 +24,7 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 	for engine_query in "${engine_query_array[@]}"
 	do
 		if [ "${engine_query}" == "${engine}" ]; then
-			gamedigengine="protocol_valve"
+			gamedigengine="protocol-valve"
 		fi
 	done
 
