@@ -122,7 +122,9 @@ fn_info_message_gameserver(){
 	fn_messages_separator
 	{
 		# Server name
-		if [ -n "${servername}" ]; then
+		if [ -n "${gdname}" ];then
+			echo -e "${blue}Server name:\t${default}${gdname}"
+		elif [ -n "${servername}" ]; then
 			echo -e "${blue}Server name:\t${default}${servername}"
 		fi
 

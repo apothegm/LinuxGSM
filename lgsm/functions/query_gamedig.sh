@@ -64,6 +64,9 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 	gamedigraw=$(gamedig --type "${gamedigengine}" --host "${ip}" --port "${port}")
 
 	# numplayers
+	gdname=$(echo "${gamedigraw}" | jq -re '.name')
+
+	# numplayers
 	gdplayers=$(echo "${gamedigraw}" | jq -re '.players|length')
 
 	# current map
