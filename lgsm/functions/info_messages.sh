@@ -2,7 +2,7 @@
 # LinuxGSM info_messages.sh function
 # Author: Daniel Gibbs
 # Website: https://linuxgsm.com
-# Description: Defines server info messages for details, alerts.
+# Description: Defines server info messages for details and alerts.
 
 # Standard Details
 # This applies to all engines
@@ -181,9 +181,14 @@ fn_info_message_gameserver(){
 			echo -e "${blue}Stats password:\t${default}${statspassword}"
 		fi
 
-		# Maxplayers
-		if [ -n "${maxplayers}" ]; then
-			echo -e "${blue}Maxplayers:\t${default}${maxplayers}"
+		# Players
+		if [ -n "${gdplayers}" ]; then
+			echo -e "${blue}Players:\t${default}${gdplayers}/${maxplayers}"
+		else
+			# Maxplayers
+			if [ -n "${maxplayers}" ]; then
+				echo -e "${blue}Maxplayers:\t${default}${maxplayers}"
+			fi
 		fi
 
 		# Game mode
