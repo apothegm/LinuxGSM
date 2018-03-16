@@ -55,7 +55,7 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 	local shortname_query_array=( ts3 )
 	for shortname_query in "${shortname_query_array[@]}"
 	do
-		if [ "${engine_query}" == "${shortname}" ]; then
+		if [ "${shortname_query}" == "${shortname}" ]; then
 			gamedigengine="teamspeak3"
 		fi
 	done
@@ -65,21 +65,26 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 
 	# numplayers
 	gdname=$(echo "${gamedigraw}" | jq -re '.name')
+	if [ "${gdname}" == "null" ]; then
+		gdname=
+	fi
 
 	# numplayers
 	gdplayers=$(echo "${gamedigraw}" | jq -re '.players|length')
+	if [ "${gdplayers}" == "null" ]; then
+		gdplayers=
+	fi
 
 	# current map
 	gdmap=$(echo "${gamedigraw}" | jq -re '.map')
+	echo ${gdmap}
+	if [ "${gdmap}" == "null" ]; then
+		gdmap=
+	fi
 
 	# numbots
 	gdbots=$(echo "${gamedigraw}" | jq -re '.raw.numbots')
-
-	local gdvar_query_array=( gdname gdplayers gdmap gdbots)
-	for gdvar_query in "${gdvar_query_array[@]}"
-	do
-		if [ "${gdvar_query}" == "null" ]; then
-			unset "${gdvar_query}"
-		fi
-	done
+	if [ "${gdbots}" == "null" ]; then
+		gdbots=
+	fi
 fi
