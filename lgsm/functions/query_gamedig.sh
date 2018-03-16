@@ -74,4 +74,12 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 
 	# numbots
 	gdbots=$(echo "${gamedigraw}" | jq -re '.raw.numbots')
+
+	local gdvar_query_array=( gdname gdplayers gdmap gdbots)
+	for gdvar_query in "${gdvar_query_array[@]}"
+	do
+		if [ "${gdvar_query}" == "null" ]; then
+			unset "${gdvar_query}"
+		fi
+	done
 fi
