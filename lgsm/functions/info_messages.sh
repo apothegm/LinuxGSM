@@ -191,6 +191,16 @@ fn_info_message_gameserver(){
 			fi
 		fi
 
+		# Current Map
+		if [ -n "${gdmap}" ]; then
+			echo -e "${blue}Current Map:\t${default}${gdmap}"
+		fi
+
+		# Default Map
+		if [ -n "${defaultmap}" ]; then
+			echo -e "${blue}Default Map:\t${default}${defaultmap}"
+		fi
+
 		# Game mode
 		if [ -n "${gamemode}" ]; then
 			echo -e "${blue}Game mode:\t${default}${gamemode}"
