@@ -144,4 +144,4 @@ if [ -z "${extip}" ];then
 			echo "x.x.x.x"
 		fi
 	fi
-fi #
+fi
