@@ -207,6 +207,12 @@ fn_info_message_gameserver(){
 			fi
 		fi
 
+		# Bots
+		if [ -n "${gdbots}" ]; then
+			echo -e "${blue}Bots:\t${default}${gdbots}"
+		fi
+
+
 		# Current Map
 		if [ -n "${gdmap}" ]; then
 			echo -e "${blue}Current Map:\t${default}${gdmap}"
