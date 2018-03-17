@@ -69,7 +69,7 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 		# raw output
 		gamedigraw=$(gamedig --type "${gamedigengine}" --host "${ip}" --port "${port}")
 
-		# numplayers
+		# server name
 		gdname=$(echo "${gamedigraw}" | jq -re '.name')
 		if [ "${gdname}" == "null" ]; then
 			gdname=
