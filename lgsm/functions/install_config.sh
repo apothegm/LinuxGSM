@@ -61,8 +61,7 @@ fn_set_config_vars(){
 		echo "changing hostname."
 		fn_script_log_info "changing hostname."
 		sleep 1
-
-		if [ $(grep SERVERNAME=SERVERNAME \"${lgsmdir}/config-default/config-game/${config}\" 2>/dev/null) ]; then
+		if grep -q "SERVERNAME=SERVERNAME" "${lgsmdir}/config-default/config-game/${config}" 2>/dev/null; then
 			sed -i "s/SERVERNAME=SERVERNAME/SERVERNAME=${servername}/g" "${servercfgfullpath}"
 		else
 			sed -i "s/SERVERNAME/${servername}/g" "${servercfgfullpath}"
@@ -157,6 +156,13 @@ elif [ "${gamename}" == "Ballistic Overkill" ]; then
 elif [ "${gamename}" == "Base Defense" ]; then
 	gamedirname="BaseDefense"
 	array_configs+=( server.cfg )
+	fn_fetch_default_config
+	fn_default_config_remote
+	fn_set_config_vars
+elif [ "${gamename}" == "Battalion 1944" ]; then
+	gamedirname="Battalion1944"
+	fn_check_cfgdir
+	array_configs+=( DefaultGame.ini )
 	fn_fetch_default_config
 	fn_default_config_remote
 	fn_set_config_vars
@@ -283,6 +289,12 @@ elif [ "${gamename}" == "Don't Starve Together" ]; then
 	fn_set_dst_config_vars
 elif [ "${gamename}" == "Double Action: Boogaloo" ]; then
 	gamedirname="DoubleActionBoogaloo"
+	array_configs+=( server.cfg )
+	fn_fetch_default_config
+	fn_default_config_remote
+	fn_set_config_vars
+elif [ "${gamename}" == "ET: Legacy" ]; then
+	gamedirname="ETLegacy"
 	array_configs+=( server.cfg )
 	fn_fetch_default_config
 	fn_default_config_remote
