@@ -185,7 +185,7 @@ fn_info_message_gameserver(){
 
 		# Players
 
-		if [ "${gamedigerror}" -ne "0" ]; then
+		if [ "${gamedigerror}" != "0" ]; then
 			if [ -n "${maxplayers}" ]; then
 				echo -e "${blue}Maxplayers:\t${default}${maxplayers}"
 			fi
