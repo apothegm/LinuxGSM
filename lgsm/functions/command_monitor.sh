@@ -30,69 +30,23 @@ fn_monitor_check_update(){
 	fi
 }
 
-fn_monitor_msg_checking(){
+fn_monitor_check_session(){
 	fn_print_dots "Checking session: "
 	fn_print_checking_eol
 	fn_script_log_info "Checking session: CHECKING"
 	sleep 1
-}
-
-fn_monitor_teamspeak3(){
 	if [ "${status}" != "0" ]; then
 		fn_print_ok "Checking session: "
 		fn_print_ok_eol_nl
 		fn_script_log_pass "Checking session: OK"
 	else
-		fn_print_error "Checking session: ${ts3error}: "
-		fn_print_fail_eol_nl
-		fn_script_log_error "Checking session: ${ts3error}: FAIL"
-		failurereason="${ts3error}"
-		alert="restart"
-		alert.sh
-		fn_script_log_info "Monitor is starting ${servername}"
-		sleep 1
-		command_restart.sh
-	fi
-}
-
-fn_monitor_mumble(){
-	if [ "${status}" != "0" ]; then
-		fn_print_ok "Checking session: "
-		fn_print_ok_eol_nl
-		fn_script_log_pass "Checking session: OK"
-	else
-		fn_print_error "Checking session: Not listening to port ${port}"
-		fn_print_fail_eol_nl
-		fn_script_log_error "Checking session: Not listening to port ${port}"
-		failurereason="Checking session: Not listening to port ${port}"
-		alert="restart"
-		alert.sh
-		fn_script_log_info "Monitor is starting ${servername}"
-		sleep 1
-		command_restart.sh
-	fi
-}
-fn_monitor_tmux(){
-	# checks that tmux session is running
-	if [ "${status}" != "0" ]; then
-		fn_print_ok "Checking session: "
-		fn_print_ok_eol_nl
-		fn_script_log_pass "Checking session: OK"
-		# runs gsquery check on game with specific engines.
-		local allowed_engines_array=( avalanche2.0 avalanche3.0 goldsource idtech2 idtech3 idtech3_ql iw2.0 iw3.0 madness quake refractor realvirtuality source spark starbound unity3d unreal unreal2 unreal4 )
-		for allowed_engine in "${allowed_engines_array[@]}"
-		do
-			if [ "${allowed_engine}" == "starbound" ]; then
-				info_config.sh
-				if [ "${queryenabled}" == "true" ]; then
-					query_gsquery.sh
-				fi
-			elif [ "${allowed_engine}" == "${engine}" ]; then
-				query_gsquery.sh
-			fi
-		done
-	else
-		fn_print_error "Checking session: "
+		if [ "${gamename}" == "TeamSpeak 3" ]; then
+			fn_print_error "Checking session: ${ts3error}: "
+		elif [ "${gamename}" == "Mumble" ]; then
+			fn_print_error "Checking session: Not listening to port ${port}"
+		else
+			fn_print_error "Checking session: "
+		fi
 		fn_print_fail_eol_nl
 		fn_script_log_error "Checking session: FAIL"
 		alert="restart"
@@ -101,6 +55,17 @@ fn_monitor_tmux(){
 		sleep 1
 		command_restart.sh
 	fi
+}
+
+fn_monitor_query(){
+if [ "${queryenabled}" == "true" ]; then
+	local allowed_engines_array=( avalanche2.0 avalanche3.0 goldsource idtech2 idtech3 idtech3_ql iw2.0 iw3.0 madness quake refractor realvirtuality source spark starbound unity3d unreal unreal2 unreal4 )
+	for allowed_engine in "${allowed_engines_array[@]}"
+	do
+		query_gamedig.sh
+		query_gsquery.sh
+	done
+fi
 }
 
 monitorflag=1
@@ -112,12 +77,6 @@ info_config.sh
 
 fn_monitor_check_lockfile
 fn_monitor_check_update
-fn_monitor_msg_checking
-if [ "${gamename}" == "TeamSpeak 3" ]; then
-	fn_monitor_teamspeak3
-elif [ "${gamename}" == "Mumble" ]; then
-	fn_monitor_mumble
-else
-	fn_monitor_tmux
-fi
+fn_monitor_check_session
+fn_monitor_query
 core_exit.sh
