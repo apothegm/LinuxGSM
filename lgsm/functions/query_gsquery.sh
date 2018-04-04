@@ -44,10 +44,9 @@ for queryattempt in {1..5}; do
 	fn_script_log_info "Querying port: ${ip}:${port} : ${queryattempt} : QUERYING"
 
 	gsquerycmd=$("${functionsdir}"/gsquery.py -a "${ip}" -p "${port}" -e "${engine}" 2>&1)
-	exitcode=$?
-
+	querystatus="$?"
 	sleep 1
-	if [ "${exitcode}" == "0" ]; then
+	if [ "${querystatus}" == "0" ]; then
 		# Server OK
 		fn_print_ok "Querying port: ${ip}:${port} : ${queryattempt} : "
 		fn_print_ok_eol_nl
