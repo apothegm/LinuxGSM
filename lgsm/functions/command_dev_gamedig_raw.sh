@@ -13,6 +13,22 @@ if [ ! "$(command -v gamedig 2>/dev/null)" ]; then
 	core_exit.sh
 fi
 
+info_config.sh
+if [ "${engine}" == "unreal" ]||[ "${engine}" == "unreal2" ]; then
+	port=$((port + 1))
+elif [ "${engine}" == "realvirtuality" ]; then
+	port=$((port + 1))
+elif [ "${engine}" == "spark" ]; then
+	port=$((port + 1))
+elif [ "${engine}" == "idtech3_ql" ]; then
+	engine="quakelive"
+elif [ "${gamename}" == "TeamSpeak 3" ]; then
+	port="${queryport}"
+fi
+
+if [ -n "${queryport}" ]; then
+	port="${queryport}"
+fi
 query_gamedig.sh
 echo "gamedig --type \"${gamedigengine}\" --host \"${ip}\" --port \"${port}\"|jq"
 echo""
