@@ -554,9 +554,6 @@ elif [ "${gamename}" == "Unreal Tournament 3" ]; then
 	fn_fetch_default_config
 	fn_default_config_remote
 	fn_set_config_vars
-	exitbypass=1
-	command_start.sh
-	command_stop.sh
 elif [ "${gamename}" == "Unreal Tournament 2004" ]; then
 	gamedirname="UnrealTournament2004"
 	array_configs+=( UT2004.ini )
