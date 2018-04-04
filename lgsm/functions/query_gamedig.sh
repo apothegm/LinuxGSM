@@ -2,7 +2,8 @@
 # query_gamedig.sh function
 # Author: Daniel Gibbs
 # Website: https://gameservermanagers.com
-# Description: Querys a gameserver using gamedig.
+# Description: Querys a gameserver using node-gamedig.
+# https://github.com/sonicsnes/node-gamedig
 
 #Check if gamedig and jq are installed
 if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; then
