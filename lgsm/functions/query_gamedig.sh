@@ -7,7 +7,7 @@
 
 #Check if gamedig and jq are installed
 if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; then
-		local engine_query_array=( avalanche3.0 madness quakelive realvirtuality refractor source goldsource spark starbound unity3d )
+		local engine_query_array=( avalanche3.0 madness quakelive realvirtuality refractor source goldsource spark starbound unity3d unreal4 )
 		for engine_query in "${engine_query_array[@]}"
 		do
 			if [ "${engine_query}" == "${engine}" ]; then
