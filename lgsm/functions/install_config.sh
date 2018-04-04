@@ -38,12 +38,15 @@ fn_default_config_remote(){
 		echo "copying ${config} config file."
 		fn_script_log_info "copying ${servercfg} config file."
 		if [ "${config}" == "${servercfgdefault}" ]; then
+			mkdir -p "${servercfgdir}"
 			cp -nv "${lgsmdir}/config-default/config-game/${config}" "${servercfgfullpath}"
 		elif [ "${gamename}" == "ARMA 3" ]&&[ "${config}" == "${networkcfgdefault}" ]; then
+			mkdir -p "${servercfgdir}"
 			cp -nv "${lgsmdir}/config-default/config-game/${config}" "${networkcfgfullpath}"
 		elif [ "${gamename}" == "Don't Starve Together" ]&&[ "${config}" == "${clustercfgdefault}" ]; then
 			cp -nv "${lgsmdir}/config-default/config-game/${clustercfgdefault}" "${clustercfgfullpath}"
 		else
+			mkdir -p "${servercfgdir}"
 			cp -nv "${lgsmdir}/config-default/config-game/${config}" "${servercfgdir}/${config}"
 		fi
 	done
@@ -542,6 +545,12 @@ elif [ "${gamename}" == "Tower Unite" ]; then
 elif [ "${gamename}" == "Unreal Tournament" ]; then
 	gamedirname="UnrealTournament"
 	array_configs+=( Game.ini Engine.ini )
+	fn_fetch_default_config
+	fn_default_config_remote
+	fn_set_config_vars
+elif [ "${gamename}" == "Unreal Tournament 3" ]; then
+	gamedirname="UnrealTournament3"
+	array_configs+=( UTGame.ini UTWeb.ini )
 	fn_fetch_default_config
 	fn_default_config_remote
 	fn_set_config_vars
