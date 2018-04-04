@@ -24,7 +24,10 @@ for queryattempt in {1..5}; do
 		if [ ! -f "${functionsdir}/query_gsquery.py" ]; then
 			fn_fetch_file_github "lgsm/functions" "query_gsquery.py" "${functionsdir}" "chmodx" "norun" "noforce" "nomd5"
 		fi
-		gsquerycmd=$("${functionsdir}"/query_gsquery.py -a "${ip}" -p "${port}" -e "${engine}" 2>&1)
+		"${functionsdir}"/query_gsquery.py -a "${ip}" -p "${port}" -e "${engine}" 2>&1
+		querystatus="$?"
+	elif [ "${querymethod}" ==  "telnet" ];then
+		bash -c 'exec 3<> /dev/tcp/'${ip}'/'${port}''
 		querystatus="$?"
 	fi
 
@@ -168,6 +171,11 @@ fn_monitor_query(){
 	done
 }
 
+fn_monitor_query_telnet(){
+	querymethod="telnet"
+	fn_monitor_loop
+}
+
 monitorflag=1
 fn_print_dots "${servername}"
 sleep 1
@@ -183,6 +191,8 @@ if [ "${gamename}" == "starbound" ]; then
 	if [ "${queryenabled}" == "true" ]; then
 		fn_monitor_query
 	fi
+elif [ "${gamename}" == "teamspeak3" ]; then
+	fn_monitor_query_telnet
 else
 	fn_monitor_query
 fi
