@@ -926,10 +926,10 @@ echo "================="
 grep functionfile= "${TRAVIS_BUILD_DIR}/dev-debug.log"|  sed 's/functionfile=//g'
 
 echo ""
-echo "5.4 - monitor - gsquery.py failure"
+echo "5.4 - monitor - query_gsquery.py failure"
 echo "================================="
 echo "Description:"
-echo "gsquery.py will fail to query port."
+echo "query_gsquery.py will fail to query port."
 echo "Command: ./jc2server monitor"
 requiredstatus="ONLINE"
 fn_setstatus
