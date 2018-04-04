@@ -7,6 +7,21 @@
 
 #Check if gamedig and jq are installed
 if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; then
+
+		info_config.sh
+		if [ "${engine}" == "unreal" ]||[ "${engine}" == "unreal2" ]; then
+			port=$((port + 1))
+		elif [ "${engine}" == "realvirtuality" ]; then
+			port=$((port + 1))
+		elif [ "${engine}" == "spark" ]; then
+			port=$((port + 1))
+		elif [ "${engine}" == "idtech3_ql" ]; then
+			engine="quakelive"
+		fi
+
+		if [ -n "${queryport}" ]; then
+			port="${queryport}"
+		fi
 		local engine_query_array=( avalanche3.0 madness quakelive realvirtuality refractor source goldsource spark starbound unity3d unreal4 )
 		for engine_query in "${engine_query_array[@]}"
 		do
