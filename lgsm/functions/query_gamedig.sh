@@ -6,10 +6,6 @@
 
 #Check if gamedig and jq are installed
 if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; then
-	# will bypass query if server offline
-	check_status.sh
-	if [ "${status}" != "0" ]; then
-
 		local engine_query_array=( avalanche3.0 madness quakelive realvirtuality refractor source goldsource spark starbound unity3d )
 		for engine_query in "${engine_query_array[@]}"
 		do
@@ -49,7 +45,9 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 				gamedigengine="teamspeak3"
 			fi
 		done
-
+	# will bypass query if server offline
+	check_status.sh
+	if [ "${status}" != "0" ]; then
 		# checks if query is working 0 = pass
 		querystatus=$(gamedig --type "${gamedigengine}" --host "${ip}" --port "${port}" | jq '.error|length')
 		# raw output
