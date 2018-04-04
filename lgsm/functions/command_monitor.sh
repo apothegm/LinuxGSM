@@ -24,7 +24,7 @@ for queryattempt in {1..5}; do
 		if [ ! -f "${functionsdir}/query_gsquery.py" ]; then
 			fn_fetch_file_github "lgsm/functions" "query_gsquery.py" "${functionsdir}" "chmodx" "norun" "noforce" "nomd5"
 		fi
-		"${functionsdir}"/query_gsquery.py -a "${ip}" -p "${port}" -e "${engine}" 2>&1
+		"${functionsdir}"/query_gsquery.py -a "${ip}" -p "${port}" -e "${engine}" > /dev/null 2>&1
 		querystatus="$?"
 	elif [ "${querymethod}" ==  "telnet" ];then
 		bash -c 'exec 3<> /dev/tcp/'${ip}'/'${port}''
