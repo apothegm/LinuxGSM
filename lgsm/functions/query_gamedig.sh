@@ -61,6 +61,15 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 				gamedigengine="teamspeak3"
 			fi
 		done
+
+		local engine_query_array=( unreal3 )
+		for engine_query in "${engine_query_array[@]}"
+		do
+			if [ "${engine_query}" == "${engine}" ]; then
+				gamedigengine="ut3"
+			fi
+		done
+
 	# will bypass query if server offline
 	check_status.sh
 	if [ "${status}" != "0" ]; then
