@@ -33,3 +33,12 @@ query_gamedig.sh
 echo "gamedig --type \"${gamedigengine}\" --host \"${ip}\" --port \"${port}\"|jq"
 echo""
 echo "${gamedigraw}" | jq
+echo""
+echo "================================="
+echo "gsquery Raw Output"
+echo "================================="
+echo""
+if [ ! -f "${functionsdir}/query_gsquery.py" ]; then
+	fn_fetch_file_github "lgsm/functions" "query_gsquery.py" "${functionsdir}" "chmodx" "norun" "noforce" "nomd5"
+fi
+"${functionsdir}"/query_gsquery.py -a "${ip}" -p "${port}" -e "${engine}"
