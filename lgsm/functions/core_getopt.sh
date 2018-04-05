@@ -51,7 +51,7 @@ cmd_dev_query_raw=( "qr;query-raw" "command_dev_query_raw.sh" "The raw output of
 
 ### Set specific opt here ###
 
-currentopt=( "${cmd_start[@]}" "${cmd_stop[@]}" "${cmd_restart[@]}" "${cmd_monitor[@]}" "${cmd_test_alert[@]}" "${cmd_gamedig[@]}" "${cmd_details[@]}" "${cmd_postdetails[@]}" )
+currentopt=( "${cmd_start[@]}" "${cmd_stop[@]}" "${cmd_restart[@]}" "${cmd_monitor[@]}" "${cmd_test_alert[@]}" "${cmd_details[@]}" "${cmd_postdetails[@]}" )
 
 # Update LGSM
 currentopt+=( "${cmd_update_linuxgsm[@]}" )
@@ -131,7 +131,7 @@ currentopt+=( "${cmd_install[@]}" "${cmd_auto_install[@]}" )
 ## Developer commands
 currentopt+=( "${cmd_dev_debug[@]}" )
 if [ -f ".dev-debug" ]; then
-	currentopt+=(  "${cmd_dev_detect_deps[@]}" "${cmd_dev_detect_glibc[@]}" "${cmd_dev_detect_ldd[@]}" "${cmd_dev_gamedig_raw[@]}" )
+	currentopt+=( "${cmd_dev_detect_deps[@]}" "${cmd_dev_detect_glibc[@]}" "${cmd_dev_detect_ldd[@]}" "${cmd_dev_query_raw[@]}" )
 fi
 
 ### Build list of available commands
