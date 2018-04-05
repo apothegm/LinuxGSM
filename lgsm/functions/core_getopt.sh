@@ -47,7 +47,7 @@ cmd_dev_debug=( "dev;developer" "command_dev_debug.sh" "Enable developer Mode." 
 cmd_dev_detect_deps=( "dd;detect-deps" "command_dev_detect_deps.sh" "Detect required dependencies." )
 cmd_dev_detect_glibc=( "dg;detect-glibc" "command_dev_detect_glibc.sh" "Detect required glibc." )
 cmd_dev_detect_ldd=( "dl;detect-ldd" "command_dev_detect_ldd.sh" "Detect required dynamic dependencies." )
-cmd_dev_gamedig_raw=( "gdr;gamedig-raw" "command_dev_gamedig_raw.sh" "The raw output of gamedig." )
+cmd_dev_gamedig_raw=( "gdr;gamedig-raw" "command_dev_query_raw.sh" "The raw output of gamedig." )
 
 ### Set specific opt here ###
 

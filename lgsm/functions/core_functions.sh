@@ -269,7 +269,7 @@ functionfile="${FUNCNAME}"
 fn_fetch_function
 }
 
-command_dev_gamedig_raw.sh(){
+command_dev_query_raw.sh(){
 functionfile="${FUNCNAME}"
 fn_fetch_function
 }

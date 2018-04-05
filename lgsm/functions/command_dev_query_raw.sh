@@ -1,5 +1,5 @@
 #!/bin/bash
-# command_dev_gamedig_raw.sh function
+# command_dev_query_raw.sh function
 # Author: Daniel Gibbs
 # Website: https://gameservermanagers.com
 # Description: Raw gamedig output of the server.
