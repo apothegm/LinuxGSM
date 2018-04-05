@@ -20,7 +20,6 @@ cmd_backup=( "b;backup" "command_backup.sh" "Create backup archives of the serve
 cmd_update_linuxgsm=( "ul;update-lgsm;uf;update-functions" "command_update_linuxgsm.sh" "Check and apply any LinuxGSM updates." )
 cmd_test_alert=( "ta;test-alert" "command_test_alert.sh" "Send a test alert." )
 cmd_monitor=( "m;monitor" "command_monitor.sh" "Check server status and restart if crashed." )
-cmd_gamedig=( "gd;gamedig" "info_gamedig.sh" "Returns query data from the server." )
 # Console servers only
 cmd_console=( "c;console" "command_console.sh" "Access server console." )
 cmd_debug=( "d;debug" "command_debug.sh" "Start server directly in your terminal." )
