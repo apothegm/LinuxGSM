@@ -81,9 +81,6 @@ swaptotal=$(free ${humanreadable} | awk '/Swap:/ {print $2}')
 swapused=$(free ${humanreadable} | awk '/Swap:/ {print $3}')
 swapfree=$(free ${humanreadable} | awk '/Swap:/ {print $4}')
 
-# Proccess RAM usage
-executableram=$(ps -eo rss,pid,euser,args:100 --sort %mem | grep -v grep | grep -i "${executable}" | awk '{printf $1/1024 "MB"; $1=""; print }')
-
 ### Disk information
 
 ## Available disk space on the partition.
