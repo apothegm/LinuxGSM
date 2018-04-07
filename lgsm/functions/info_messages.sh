@@ -449,12 +449,12 @@ fn_info_message_ports(){
 			parmslocation="${servercfgfullpath}"
 		fi
 	done
-	# engines/games that require editing in the script file
+	# engines/games that require editing the parms
 	local ports_edit_array=( "goldsource" "Factorio" "Hurtworld" "iw3.0" "Rust" "spark" "source" "starbound" "unreal4" "realvirtuality")
 	for port_edit in "${ports_edit_array[@]}"
 	do
 		if [ "${engine}" == "${port_edit}" ]||[ "${gamename}" == "${port_edit}" ]; then
-			parmslocation="${selfname}"
+			parmslocation="${configdirserver}"
 		fi
 	done
 	echo -e "${parmslocation}"
