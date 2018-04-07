@@ -115,7 +115,6 @@ fn_info_parms_unreal2(){
 	queryport=$((port + 1))
 }
 
-
 fn_info_parms_unreal3(){
 	port=${port:-"0"}
 	queryport=${queryport:-"0"}
