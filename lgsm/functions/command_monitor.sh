@@ -143,11 +143,14 @@ fn_monitor_query(){
 			port=$((port + 1))
 		elif [ "${engine}" == "idtech3_ql" ]; then
 			engine="quakelive"
+		elif [ "{gamename}" == "Killing Floor 2" ]; then
+			engine="unreal4"
 		fi
 
 		if [ -n "${queryport}" ]; then
 			port="${queryport}"
 		fi
+
 		# will first attempt to use gamedig then gsquery
 		totalseconds=0
 		local query_methods_array=( gamedig gsquery )
