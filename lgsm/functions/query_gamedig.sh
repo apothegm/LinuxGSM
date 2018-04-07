@@ -8,21 +8,10 @@
 #Check if gamedig and jq are installed
 if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; then
 
-		info_config.sh
-		if [ "${engine}" == "unreal" ]||[ "${engine}" == "unreal2" ]; then
-			port=$((port + 1))
-		elif [ "${engine}" == "realvirtuality" ]; then
-			port=$((port + 1))
-		elif [ "${engine}" == "spark" ]; then
-			port=$((port + 1))
-		elif [ "${engine}" == "idtech3_ql" ]; then
-			engine="quakelive"
+		if [ "${engine}" == "idtech3_ql" ]; then
+			local engine="quakelive"
 		elif [ "${gamename}" == "Killing Floor 2" ]; then
-			engine="unreal4"
-		fi
-
-		if [ -n "${queryport}" ]; then
-			port="${queryport}"
+			local engine="unreal4"
 		fi
 
 		local engine_query_array=( avalanche3.0 madness quakelive realvirtuality refractor source goldsource spark starbound unity3d unreal4 )
@@ -70,9 +59,9 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 	check_status.sh
 	if [ "${status}" != "0" ]; then
 		# checks if query is working 0 = pass
-		querystatus=$(gamedig --type "${gamedigengine}" --host "${ip}" --port "${port}" | jq '.error|length')
+		querystatus=$(gamedig --type "${gamedigengine}" --host "${ip}" --port "${queryport}" | jq '.error|length')
 		# raw output
-		gamedigraw=$(gamedig --type "${gamedigengine}" --host "${ip}" --port "${port}")
+		gamedigraw=$(gamedig --type "${gamedigengine}" --host "${ip}" --port "${queryport}")
 
 		# server name
 		gdname=$(echo "${gamedigraw}" | jq -re '.name')

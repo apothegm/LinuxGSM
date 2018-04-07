@@ -14,9 +14,9 @@ fn_monitor_loop(){
 # Will query up to 5 times every 15 seconds.
 # Query will wait up to 60 seconds to confirm server is down giving server time if changing map.
 for queryattempt in {1..5}; do
-	fn_print_dots "Querying port: ${querymethod}: ${ip}:${port} : ${totalseconds}/${queryattempt}: "
+	fn_print_dots "Querying port: ${querymethod}: ${ip}:${queryport} : ${totalseconds}/${queryattempt}: "
 	fn_print_querying_eol
-	fn_script_log_info "Querying port: ${querymethod}: ${ip}:${port} : ${queryattempt} : QUERYING"
+	fn_script_log_info "Querying port: ${querymethod}: ${ip}:${queryport} : ${queryattempt} : QUERYING"
 	sleep 0.5
 	if [ "${querymethod}" ==  "gamedig" ];then
 		query_gamedig.sh
@@ -24,35 +24,35 @@ for queryattempt in {1..5}; do
 		if [ ! -f "${functionsdir}/query_gsquery.py" ]; then
 			fn_fetch_file_github "lgsm/functions" "query_gsquery.py" "${functionsdir}" "chmodx" "norun" "noforce" "nomd5"
 		fi
-		"${functionsdir}"/query_gsquery.py -a "${ip}" -p "${port}" -e "${engine}" > /dev/null 2>&1
+		"${functionsdir}"/query_gsquery.py -a "${ip}" -p "${queryport}" -e "${engine}" > /dev/null 2>&1
 		querystatus="$?"
 	elif [ "${querymethod}" ==  "telnet" ];then
-		bash -c 'exec 3<> /dev/tcp/'${ip}'/'${port}''
+		bash -c 'exec 3<> /dev/tcp/'${ip}'/'${queryport}''
 		querystatus="$?"
 	fi
 
 	if [ "${querystatus}" == "0" ]; then
 		# Server query OK
 		sleep 0.5
-		fn_print_ok "Querying port: ${querymethod}: ${ip}:${port} : ${totalseconds}/${queryattempt}: "
+		fn_print_ok "Querying port: ${querymethod}: ${ip}:${queryport} : ${totalseconds}/${queryattempt}: "
 		fn_print_ok_eol_nl
-		fn_script_log_pass "Querying port: ${querymethod}: ${ip}:${port} : ${queryattempt}: OK"
+		fn_script_log_pass "Querying port: ${querymethod}: ${ip}:${queryport} : ${queryattempt}: OK"
 		exitcode=0
 		monitorpass=1
 		core_exit.sh
 	else
 		# Server query FAIL
-		fn_script_log_info "Querying port: ${querymethod}: ${ip}:${port} : ${queryattempt}: FAIL"
-		fn_print_fail "Querying port: ${querymethod}: ${ip}:${port} : ${totalseconds}/${queryattempt}: "
+		fn_script_log_info "Querying port: ${querymethod}: ${ip}:${queryport} : ${queryattempt}: FAIL"
+		fn_print_fail "Querying port: ${querymethod}: ${ip}:${queryport} : ${totalseconds}/${queryattempt}: "
 		fn_print_fail_eol
 		sleep 1
 		# monitor try gamedig first then gsquery before restarting
 		if [ "${querymethod}" ==  "gsquery" ];then
 			if [ "${totalseconds}" -ge "59" ]; then
 				# Server query FAIL for over 59 seconds reboot server
-				fn_print_fail "Querying port: ${querymethod}: ${ip}:${port} : ${totalseconds}/${queryattempt}: "
+				fn_print_fail "Querying port: ${querymethod}: ${ip}:${queryport} : ${totalseconds}/${queryattempt}: "
 				fn_print_fail_eol_nl
-				fn_script_log_error "Querying port: ${querymethod}: ${ip}:${port} : ${queryattempt}: FAIL"
+				fn_script_log_error "Querying port: ${querymethod}: ${ip}:${queryport} : ${queryattempt}: FAIL"
 				sleep 1
 
 				# Send alert if enabled
@@ -69,7 +69,7 @@ for queryattempt in {1..5}; do
 
 		# Seconds counter
 		for seconds in {1..15}; do
-			fn_print_fail "Querying port: ${querymethod}: ${ip}:${port} : ${totalseconds}/${queryattempt}: WAIT"
+			fn_print_fail "Querying port: ${querymethod}: ${ip}:${queryport} : ${totalseconds}/${queryattempt}: WAIT"
 			totalseconds=$((totalseconds + 1))
 			sleep 1
 			if [ "${seconds}" == "15" ]; then
@@ -113,7 +113,7 @@ fn_monitor_check_session(){
 		if [ "${gamename}" == "TeamSpeak 3" ]; then
 			fn_print_error "Checking session: ${ts3error}: "
 		elif [ "${gamename}" == "Mumble" ]; then
-			fn_print_error "Checking session: Not listening to port ${port}"
+			fn_print_error "Checking session: Not listening to port ${queryport}"
 		else
 			fn_print_error "Checking session: "
 		fi
@@ -134,21 +134,10 @@ fn_monitor_query(){
 	local allowed_engines_array=( avalanche2.0 avalanche3.0 goldsource idtech2 idtech3 idtech3_ql iw2.0 iw3.0 madness quake refractor realvirtuality source spark starbound unity3d unreal unreal2 unreal4 )
 	for allowed_engine in "${allowed_engines_array[@]}"
 	do
-		info_config.sh
-		if [ "${engine}" == "unreal" ]||[ "${engine}" == "unreal2" ]; then
-			port=$((port + 1))
-		elif [ "${engine}" == "realvirtuality" ]; then
-			port=$((port + 1))
-		elif [ "${engine}" == "spark" ]; then
-			port=$((port + 1))
-		elif [ "${engine}" == "idtech3_ql" ]; then
-			engine="quakelive"
+		if [ "${engine}" == "idtech3_ql" ]; then
+			local engine="quakelive"
 		elif [ "${gamename}" == "Killing Floor 2" ]; then
-			engine="unreal4"
-		fi
-
-		if [ -n "${queryport}" ]; then
-			port="${queryport}"
+			local engine="unreal4"
 		fi
 
 		# will first attempt to use gamedig then gsquery
@@ -185,6 +174,7 @@ sleep 1
 check.sh
 logs.sh
 info_config.sh
+info_parms.sh
 
 fn_monitor_check_lockfile
 fn_monitor_check_update

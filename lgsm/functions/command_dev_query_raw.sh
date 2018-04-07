@@ -17,20 +17,11 @@ fi
 
 
 info_config.sh
-if [ "${engine}" == "unreal" ]||[ "${engine}" == "unreal2" ]; then
-	port=$((port + 1))
-elif [ "${engine}" == "realvirtuality" ]; then
-	port=$((port + 1))
-elif [ "${engine}" == "spark" ]; then
-	port=$((port + 1))
-elif [ "${engine}" == "idtech3_ql" ]; then
-	engine="quakelive"
+info_parms.sh
+if [ "${engine}" == "idtech3_ql" ]; then
+	local engine="quakelive"
 elif [ "${gamename}" == "Killing Floor 2" ]; then
-	engine="unreal4"
-fi
-
-if [ -n "${queryport}" ]; then
-	port="${queryport}"
+	local engine="unreal4"
 fi
 
 query_gamedig.sh
