@@ -463,6 +463,40 @@ fn_info_config_realvirtuality(){
 	fi
 }
 
+fn_info_config_risingworld(){
+	if [ ! -f "${servercfgfullpath}" ]; then
+		servername="${unavailable}"
+		rconpassword="${unavailable}"
+		rconport="${zero}"
+		maxplayers="${zero}"
+		port="${zero}"
+		gamemode="${unavailable}"
+		gameworld="${unavailable}"
+	else
+		servername=$(grep "motd" "${servercfgfullpath}" | sed -e 's/^[ \t]*//g' -e '/^#/d' -e 's/motd//g' | tr -d '=\";,:' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//')
+		rconpassword=$(grep "rcon.password" "${servercfgfullpath}" | sed -e 's/^[ \t]*//g' -e '/^#/d' -e 's/rcon.password//g' | tr -d '=\";,:' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//')
+		rconport=$(grep "rcon.port" "${servercfgfullpath}" | grep -v "#" | tr -cd '[:digit:]')
+		maxplayers=$(grep "max-players" "${servercfgfullpath}" | grep -v "#" | tr -cd '[:digit:]')
+		port=$(grep "server-port" "${servercfgfullpath}" | grep -v "#" | tr -cd '[:digit:]')
+		gamemode=$(grep "gamemode" "${servercfgfullpath}" | grep -v "#" | tr -cd '[:digit:]')
+		gameworld=$(grep "level-name" "${servercfgfullpath}" | sed -e 's/^[ \t]*//g' -e '/^#/d' -e 's/level-name//g' | tr -d '=\";,:' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//')
+
+		ip=$(grep "server-ip" "${servercfgfullpath}" | sed -e 's/^[ \t]*//g' -e '/^--/d' -e 's/server-ip//g' | tr -d '=\";,:' | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//')
+		ipsetinconfig=1
+		ipinconfigvar="server-ip"
+
+		# Not Set
+		servername=${servername:-"NOT SET"}
+		rconpassword=${rconpassword:-"NOT SET"}
+		rconport=${rconport:-"NOT SET"}
+		maxplayers=${maxplayers:-"NOT SET"}
+		port=${port:-"NOT SET"}
+		gamemode=${gamemode:-"NOT SET"}
+		gameworld=${gameworld:-"NOT SET"}
+
+	fi
+}
+
 fn_info_config_seriousengine35(){
 	if [ ! -f "${servercfgfullpath}" ]; then
 		servername="${unavailable}"
@@ -1013,6 +1047,9 @@ elif [ "${engine}" == "projectzomboid" ]; then
 # ARMA 3
 elif [ "${engine}" == "realvirtuality" ]; then
 	fn_info_config_realvirtuality
+# Rising World
+elif [ "${shortname}" == "rw" ]; then
+	fn_info_config_risingworld
 # Serious Sam
 elif [ "${engine}" == "seriousengine35" ]; then
 	fn_info_config_seriousengine35
