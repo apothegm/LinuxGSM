@@ -61,6 +61,11 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 				gamedigengine="teamspeak3"
 			fi
 		done
+
+		if [ "{gamename}" == "Killing Floor 2" ]; then
+			gamedigengine="killingfloor2"
+		fi
+
 	# will bypass query if server offline
 	check_status.sh
 	if [ "${status}" != "0" ]; then
