@@ -75,6 +75,9 @@ fn_info_message_performance(){
 		echo -e "${blue}Physical:\t${default}${physmemtotal}\t${physmemused}\t${physmemfree}\t${physmemcached}${default}"
 		echo -e "${blue}Swap:\t${default}${swaptotal}\t${swapused}\t${swapfree}${default}"
 	} | column -s $'\t' -t
+	echo -e ""
+	echo -e "${blue}${executable} RAM Usage:\t${default}${executableram}"
+
 }
 
 fn_info_message_disk(){
