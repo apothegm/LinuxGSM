@@ -9,9 +9,12 @@ echo "Gamedig Raw Output"
 echo "================================="
 echo""
 if [ ! "$(command -v gamedig 2>/dev/null)" ]; then
-	fn_print_fail_nl "gamedig not installed"
-	core_exit.sh
+	fn_print_failure_nl "gamedig not installed"
 fi
+if [ "$(command -v jq >/dev/null 2>&1)" ]; then
+	fn_print_failure_nl "jq not installed"
+fi
+
 
 info_config.sh
 if [ "${engine}" == "unreal" ]||[ "${engine}" == "unreal2" ]; then
