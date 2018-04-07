@@ -985,7 +985,7 @@ fn_info_message_unreal3(){
 	{
 		echo -e "DESCRIPTION\tDIRECTION\tPORT\tPROTOCOL"
 		echo -e "> Game\tINBOUND\t${port}\tudp"
-		echo -e "> Game\tINBOUND\t${queryport}\tudp"
+		echo -e "> Query\tINBOUND\t${queryport}\tudp"
 		echo -e "> WebAdmin\tINBOUND\t${webadminport}\ttcp\tListenPort=${webadminport}"
 	} | column -s $'\t' -t
 	echo -e ""
