@@ -12,9 +12,9 @@ local function_selfname="$(basename "$(readlink -f "${BASH_SOURCE[0]}")")"
 # Run checks and gathers details to display.
 check.sh
 info_config.sh
+info_parms.sh
 info_distro.sh
 info_glibc.sh
-info_parms.sh
 info_messages.sh
 query_gamedig.sh
 fn_info_message_distro
