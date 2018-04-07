@@ -17,7 +17,7 @@ if [ "$(command -v gamedig 2>/dev/null)" ]&&[ "$(command -v jq 2>/dev/null)" ]; 
 			port=$((port + 1))
 		elif [ "${engine}" == "idtech3_ql" ]; then
 			engine="quakelive"
-		elif [ "{gamename}" == "Killing Floor 2" ]; then
+		elif [ "${gamename}" == "Killing Floor 2" ]; then
 			engine="unreal4"
 		fi
 
