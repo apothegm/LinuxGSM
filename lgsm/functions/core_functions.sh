@@ -438,11 +438,6 @@ fn_fetch_function
 
 # Query
 
-query_gsquery.sh(){
-functionfile="${FUNCNAME}"
-fn_fetch_function
-}
-
 query_gamedig.sh(){
 functionfile="${FUNCNAME}"
 fn_fetch_function
