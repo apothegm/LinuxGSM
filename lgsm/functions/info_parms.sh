@@ -158,6 +158,9 @@ elif [ "${gamename}" == "Quake 2" ]||[ "${gamename}" == "Quake 3: Arena" ]; then
 # Rust
 elif [ "${gamename}" == "Rust" ]; then
 	fn_info_parms_rust
+# Rising World
+elif [ "${shortname}" == "rw" ]; then
+	fn_info_parms_risingworld
 # Serious Sam
 elif [ "${engine}" == "seriousengine35" ]; then
 	fn_info_config_seriousengine35
