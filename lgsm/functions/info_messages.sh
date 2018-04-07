@@ -1005,7 +1005,7 @@ fn_info_message_kf2(){
 	{
 		echo -e "DESCRIPTION\tDIRECTION\tPORT\tPROTOCOL"
 		echo -e "> Game\tINBOUND\t${port}\ttcp"
-		echo -e "> Query\tINBOUND\t${queryport}\ttcp/udp"
+		echo -e "> Query\tINBOUND\t${queryport}\tudp"
 		echo -e "> Steam\tINBOUND\t20560\tudp"
 		echo -e "> WebAdmin\tINBOUND\t${webadminport}\ttcp\tListenPort=${webadminport}"
 	} | column -s $'\t' -t
