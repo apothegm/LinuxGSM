@@ -311,12 +311,23 @@ functionfile="${FUNCNAME}"
 fn_fetch_function
 }
 
-fix_steamcmd.sh(){
+fix_glibc.sh(){
 functionfile="${FUNCNAME}"
 fn_fetch_function
 }
 
-fix_glibc.sh(){
+
+fix_kf.sh(){
+functionfile="${FUNCNAME}"
+fn_fetch_function
+}
+
+fix_kf2.sh(){
+functionfile="${FUNCNAME}"
+fn_fetch_function
+}
+
+fix_mta.sh(){
 functionfile="${FUNCNAME}"
 fn_fetch_function
 }
@@ -326,12 +337,17 @@ functionfile="${FUNCNAME}"
 fn_fetch_function
 }
 
-fix_kf.sh(){
+fix_rust.sh(){
 functionfile="${FUNCNAME}"
 fn_fetch_function
 }
 
-fix_kf2.sh(){
+fix_rw.sh(){
+functionfile="${FUNCNAME}"
+fn_fetch_function
+}
+
+fix_steamcmd.sh(){
 functionfile="${FUNCNAME}"
 fn_fetch_function
 }
@@ -346,15 +362,6 @@ functionfile="${FUNCNAME}"
 fn_fetch_function
 }
 
-fix_rust.sh(){
-functionfile="${FUNCNAME}"
-fn_fetch_function
-}
-
-fix_mta.sh(){
-functionfile="${FUNCNAME}"
-fn_fetch_function
-}
 
 # Info
 
