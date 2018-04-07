@@ -25,13 +25,14 @@ elif [ "${engine}" == "spark" ]; then
 	port=$((port + 1))
 elif [ "${engine}" == "idtech3_ql" ]; then
 	engine="quakelive"
-elif [ "${gamename}" == "TeamSpeak 3" ]; then
-	port="${queryport}"
+elif [ "{gamename}" == "Killing Floor 2" ]; then
+	engine="unreal4"
 fi
 
 if [ -n "${queryport}" ]; then
 	port="${queryport}"
 fi
+
 query_gamedig.sh
 echo "gamedig --type \"${gamedigengine}\" --host \"${ip}\" --port \"${port}\"|jq"
 echo""
