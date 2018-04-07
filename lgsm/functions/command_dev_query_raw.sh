@@ -25,7 +25,7 @@ elif [ "${engine}" == "spark" ]; then
 	port=$((port + 1))
 elif [ "${engine}" == "idtech3_ql" ]; then
 	engine="quakelive"
-elif [ "{gamename}" == "Killing Floor 2" ]; then
+elif [ "${gamename}" == "Killing Floor 2" ]; then
 	engine="unreal4"
 fi
 
