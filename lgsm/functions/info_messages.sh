@@ -450,7 +450,7 @@ fn_info_message_ports(){
 		fi
 	done
 	# engines/games that require editing in the script file
-	local ports_edit_array=( "goldsource" "Factorio" "Hurtworld" "iw3.0" "Rust" "spark" "source" "starbound" "unreal3" "unreal4" "realvirtuality")
+	local ports_edit_array=( "goldsource" "Factorio" "Hurtworld" "iw3.0" "Rust" "spark" "source" "starbound" "unreal4" "realvirtuality")
 	for port_edit in "${ports_edit_array[@]}"
 	do
 		if [ "${engine}" == "${port_edit}" ]||[ "${gamename}" == "${port_edit}" ]; then
