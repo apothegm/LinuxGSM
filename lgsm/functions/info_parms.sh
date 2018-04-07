@@ -69,6 +69,10 @@ fn_info_parms_quake2(){
 	defaultmap=${defaultmap:-"NOT SET"}
 }
 
+fn_info_parms_risingworld(){
+	servername=${servername:-"NOT SET"}
+	port=${port:-"0"}
+	queryport=$((port + 2))
 fn_info_parms_rust(){
 	servername=${servername:-"NOT SET"}
 	port=${port:-"0"}
