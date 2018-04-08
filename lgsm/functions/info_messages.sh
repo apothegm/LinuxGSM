@@ -775,6 +775,15 @@ fn_info_message_refractor(){
 	} | column -s $'\t' -t
 }
 
+fn_info_message_risingworld(){
+	echo -e "netstat -atunp | grep java"
+	echo -e ""
+	{
+		echo -e "DESCRIPTION\tDIRECTION\tPORT\tPROTOCOL"
+		echo -e "> Game\tINBOUND\t${port}\ttcp"
+	} | column -s $'\t' -t
+}
+
 fn_info_message_rust(){
 	echo -e "netstat -atunp | grep Rust"
 	echo -e ""
@@ -1109,6 +1118,8 @@ fn_info_message_select_engine(){
 		fn_info_message_mumble
 	elif [ "${gamename}" == "Rust" ]; then
 		fn_info_message_rust
+	elif [ "${shortname}" == "rw" ]; then
+		fn_info_message_risingworld
 	elif [ "${gamename}" == "Wolfenstein: Enemy Territory" ]; then
 		fn_info_message_wolfensteinenemyterritory
 	elif [ "${engine}" == "refractor" ]; then
