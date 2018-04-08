@@ -780,8 +780,9 @@ fn_info_message_risingworld(){
 	echo -e ""
 	{
 		echo -e "DESCRIPTION\tDIRECTION\tPORT\tPROTOCOL"
-		echo -e "> Game/Query\tINBOUND\t${port}\tudp"
+		echo -e "> Game/Query\tINBOUND\t${port}\ttcp/udp"
 		echo -e "> http query\tINBOUND\t${httpqueryport}\ttcp"
+		echo -e "> RCON\tINBOUND\t${rconport}\ttcp"
 	} | column -s $'\t' -t
 }
 
